@@ -1,0 +1,32 @@
+package project1;
+import java.util.*;
+import java.util.Comparator;
+public class Practice {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int[] arr = new int[5];
+		System.out.print("Enter the elements in the array: ");
+		for(int i=0; i<5; i++) {
+			arr[i] = sc.nextInt();
+		}
+		
+		System.out.println("Before Swapping:");
+		for(int i=0; i<5; i++) {
+			System.out.print(arr[i]+" ");
+		}
+		
+		System.out.print("\nEnter the two indicies: ");
+		int num1 = sc.nextInt();
+		int num2 = sc.nextInt();
+		
+		arr[num1] = arr[num1]+arr[num2];
+		arr[num2] = arr[num1]-arr[num2];
+		arr[num1] = arr[num1]-arr[num2];
+		
+		System.out.println("After Swapping:");
+		for(int i=0; i<5; i++) {
+			System.out.print(arr[i]+" ");
+		}
+	}
+
+}
