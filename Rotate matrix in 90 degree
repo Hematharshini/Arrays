@@ -1,0 +1,53 @@
+package LearnJava;
+import java.util.*;
+import java.util.Arrays;
+
+public class Practice {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter number of rows: ");
+		int n = sc.nextInt();
+		System.out.print("Enter number of columns: ");
+		int m = sc.nextInt();
+		int arr[][] = new int [n][m];
+		System.out.println("Enter a matrix of elements of "+n+" rows "+m+" columns");
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<m; j++) {
+				arr[i][j] = sc.nextInt();
+			}
+		}
+		
+		//transpose
+		for(int i=0; i<n; i++) {
+			for(int j=i+1; j<m;j++) {
+				int temp = arr[i][j];
+				arr[i][j] = arr[j][i];
+				arr[j][i] = temp;
+			}
+		}
+		//reverse each rows
+		for(int i=0; i<n; i++) {
+			int start = 0;
+			int end = n-1;
+			while(start<end) {
+				int temp = arr[i][start];
+				arr[i][start] = arr[i][end];
+				arr[i][end] = temp;
+				start++;
+				end--;
+				
+			}
+		}
+		//print matrix
+		System.out.println("The rotated matrix is :");
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<m; j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+	}
+
+}
