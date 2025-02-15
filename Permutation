@@ -1,0 +1,42 @@
+package LearnJava;
+import java.util.*;
+public class Permutation {
+	
+	public void permute(List<List<Integer>> resList, List<Integer> tempList, int nums[]){
+		if(tempList.size()==nums.length) {
+			resList.add(new ArrayList<>(tempList));
+			return;
+		}
+		for(int num:nums) {
+			if(tempList.contains(num)) {
+				continue;
+			}
+			tempList.add(num);
+			permute(resList,tempList,nums);
+			tempList.remove(tempList.size()-1);
+		}
+		
+	}
+	public void permute(int nums[]){
+		List<List<Integer>> resList = new ArrayList<>();
+		List<Integer> tempList = new ArrayList<>();
+		permute(resList,tempList,nums);
+		for(List<Integer> list: resList) {
+			System.out.println(list);
+		}
+	}
+	public static void main(String[] args) {
+		Permutation obj = new Permutation();
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the length of the array: ");
+		int n = sc.nextInt();
+		int nums[] = new int[n];
+		System.out.print("Enter the elements of array with "+n+" elements: ");
+		for(int i=0; i<n; i++) {
+			nums[i] = sc.nextInt();
+		}
+		obj.permute(nums);
+		
+		
+	}
+}
