@@ -1,0 +1,104 @@
+import java.util.*;
+// matrix operations 2
+public class java {
+    public static void swap(int[][] nums,int i, int j){
+        int temp = nums[i][j];
+        nums[i][j] = nums[j][i];
+        nums[j][i] = temp;
+    }
+    public static void transpose(int[][] nums){
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1; j<nums[i].length; j++){
+                swap(nums,i,j);
+            }
+        }
+    }
+    public static int digonalSum(int[][] nums){
+        int sum = 0;
+        int n = nums.length-1;
+        for(int i=0; i<nums.length; i++){
+            sum += nums[i][i];
+            sum += nums[n-i][i];
+        }
+        return sum;
+    }
+    public static void printSpiral(int[][] nums){
+        int left = 0;
+        int right = nums[0].length-1;
+        int top = 0;
+        int bottom = nums.length-1;
+
+        while(left<=right && top<=bottom){
+            for(int i=left ; i<=right; i++){
+                System.out.print(nums[top][i]+" ");
+                
+            }
+            top++;
+            for(int i= top; i<=bottom ; i++){
+                System.out.print(nums[i][right]+" ");
+            }
+            right--;
+            if(top<=bottom){
+                for(int i= right; i>=left ; i--){
+                    System.out.print(nums[bottom][i]+" ");
+                }
+                bottom--;
+            }
+            if(left<=right){
+                for(int i= bottom ; i>=top; i--){
+                    System.out.print(nums[i][left]+" ");
+                }
+                left++;
+            }
+        }
+    }
+    public static void search(int[][] nums, int target){
+        for(int i=0; i<nums.length; i++){
+            for(int j=0; j<nums.length; j++){
+                if(nums[i][j]== target){
+                    System.out.println("The Given Number is Found at the index "+ i+","+j);
+                    return;
+                }
+            }
+        }
+        System.out.println("The Given Number is not Found");
+        return;
+    }
+    public static void print(int[][] nums){
+        for(int i=0; i<nums.length; i++){
+            for(int j=0; j<nums[i].length; j++){
+                System.out.print(nums[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        int[][] nums = {{1,2,3},{4,5,6},{7,8,9}};
+        System.out.println("Before Transpose:");
+        print(nums);
+        transpose(nums);
+        System.out.println("After Transpose:");
+        print(nums);
+
+        int[][] nums1 = {{1,2,3},{4,5,6},{7,8,9}};
+        System.out.println("Digonal sum of the matrix equals to "+ digonalSum(nums1));
+
+        System.out.println("Spiral print of the matrix: ");
+        printSpiral(nums1);
+
+        search(nums1,5);
+    }
+}
+
+Output:
+Before Transpose:
+1 2 3
+4 5 6
+7 8 9
+After Transpose:
+1 4 7
+2 5 8
+3 6 9
+Digonal sum of the matrix equals to 30
+Spiral print of the matrix:
+1 2 3 6 9 8 7 4 5 The Given Number is Found at the index 1,1
